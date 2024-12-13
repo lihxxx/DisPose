@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="DisPose: Disentangling Pose Guidance for Controllable Human Image Animation">
+  <meta name="keywords" content="Video Generation, Human Image Animation, Pose Guidance, Controllable Animation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DisPose: Disentangling Pose Guidance for Controllable Human Image Animation</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y5ZVQZ7NHC"></script> -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./assets/figures/logo_dispose.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js_slide/fontawesome.all.min.js"></script>
+  <script src="./static/js_slide/bulma-carousel.min.js"></script>
+  <script src="./static/js_slide/bulma-slider.min.js"></script>
+  <script src="./static/js_slide/index.js"></script>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <!-- Vendor Stylesheets -->
+  <!--=================js==========================-->
+  <link rel="stylesheet" href="./static/css/tab_gallery.css">
+  <link rel="stylesheet" href="./static/css/juxtapose.css">
+  <link rel="stylesheet" href="./static/css/image_card_fader.css">
+  <link rel="stylesheet" href="./static/css/image_card_slider.css">
+</head>
+
+<body>
+
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <div class="logo">
+              <a href="index.html">
+                <img src="./assets/figures/logo_dispose.png">
+              </a>
+            </div>
+            <h1 class="title is-2 publication-title">DisPose: Disentangling Pose Guidance for Controllable Human Image
+              Animation</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="index.html">Hongxiang Li</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a href="index.html">Yaowei Li</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a href="index.html">Yuhang Yang</a><sup>2</sup>,</span>
+              </span>
+              <span class="author-block"></span>
+              <a href="index.html">Junjie Cao</a><sup>3</sup>,</span>
+              </span>
+              <span class="author-block"></span>
+              <a href="index.html">Zhihong Zhu</a><sup>1</sup>,</span>
+              </span>
+              <span class="author-block"></span>
+              <a href="index.html">Xunxin Cheng</a><sup>1</sup>,</span>
+              </span>
+              <span class="author-block"></span>
+              <a href="index.html">Long Cheng</a><sup>✉</sup>,</span>
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>Peking University <sup>2</sup>University of Science and Technology
+                of China <br /> <sup>3</sup>Tsinghua University <sup>4</sup>Hong Kong University of Science and
+                Technology <br /> ✉ Corresponding Author
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2412.09349" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="https://github.com/lihxxx/DisPose" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <img src="./assets/teaser/teaser.png" alt="teaser" width="100%">
+      </div>
+    </div>
+  </section>
+
+  <!--=================TL;DR==========================-->
+  <section class="section"></section>
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3" style="font-family: Comic Sans MS">TL;DR</h2>
+        <div class="content is-centered has-text-centered">
+          <p>
+            📍DisPose is a controllable human image animation method that improves video generation using motion field
+            guidance and keypoint correspondence..
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+
+
+  <!--=================Abstract==========================-->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3" style="font-family: Comic Sans MS">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Controllable human image animation aims to generate videos from reference images using driving videos. Due
+              to the limited control signals provided by sparse guidance (e.g., skeleton pose), recent works have
+              attempted to introduce additional dense conditions (e.g., depth map) to ensure motion alignment. However,
+              such strict dense guidance impairs the quality of the generated video when the body shape of the reference
+              character differs significantly from that of the driving video. In this paper, we present DisPose to mine
+              more generalizable and effective control signals without additional dense input, which disentangles the
+              sparse skeleton pose in human image animation into motion field guidance and keypoint correspondence.
+              Specifically, we generate a dense motion field from a sparse motion field and the reference image, which
+              provides region-level dense guidance while maintaining the generalization of the sparse pose control. We
+              also extract diffusion features corresponding to pose keypoints from the reference image, and then these
+              point features are transferred to the target pose to provide distinct identity information. To seamlessly
+              integrate into existing models, we propose a plug-and-play hybrid ControlNet that improves the quality and
+              consistency of generated videos while freezing the existing model parameters. Extensive qualitative and
+              quantitative experiments demonstrate the superiority of DisPose compared to current methods.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <!-- Model Overview -->
+  <section class="section" style="background-color: #f1f1f1;">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3" style="font-family: Comic Sans MS">Overview</h2>
+          <div class="content has-text-justified">
+            <p>we propose DisPose, a plug-and-play guidance module to disentangle pose guidance, which extracts robust
+              control signals from only the skeleton pose map and reference image without additional dense inputs.
+              Specifically, we disentangle pose guidance into motion field estimation and keypoint correspondence.
+              First, we compute the sparse motion field using the skeleton pose. We then introduce a reference-based
+              dense motion field to provide region-level motion signals through condition motion propagation on the
+              reference image. To enhance appearance consistency, we extract diffusion features corresponding to key
+              points in the reference image. These point features are transferred to the target pose by computing
+              multi-scale point correspondences from the motion trajectory. Architecturally, we implement these
+              disentangled control signals in a ControlNet-like manner to integrate them into existing methods. Finally,
+              motion fields and point embedding are injected into the latent video diffusion model resulting in accurate
+              human image animation.
+            </p>
+          </div>
+          <div class="content has-text-justified">
+            <div style="text-align: center; vertical-align:middle">
+              <img src="./assets/figures/pipeline.png" width="900">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+
+
+  <!-- Gallery -->
+  <section class="section hero is-light">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3" style="font-family: Comic Sans MS">Gallery</h2>
+            <table width="1000" align="center">
+              <tbody>
+            <tr>
+              <th>
+                <div class="video-container">
+                  <video width="170" src="./assets/movie/ref1.mp4" autoplay loop controls muted></video>
+                </div>
+              </th>
+              <th>
+                <div class="video-container">
+                  <video width="170" src="./assets/movie/case1.mp4" autoplay loop controls muted></video>
+                </div>
+              </th>
+              <th>
+                <div class="video-container">
+                  <video width="170" src="./assets/movie/ref3.mp4" autoplay loop controls muted></video>
+                </div>
+              </th>
+              <th>
+                <div class="video-container">
+                  <video width="170" src="./assets/movie/case3.mp4" autoplay loop controls muted></video>
+                </div>
+              </th>
+              <th>
+                <div class="video-container">
+                  <video width="170" src="./assets/movie/ref4.mp4" autoplay loop controls muted></video>
+                </div>
+              </th>
+              <th>
+                <div class="video-container">
+                  <video width="170" src="./assets/movie/case4.mp4" autoplay loop controls muted></video>
+                </div>
+              </th>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+  <section class="section">
+    <div class="container is-max-desktop content">
+      <h2 class="title">Acknowledgements</h2>
+      <span>We sincerely appreciate the code release of the following projects: <a href="https://github.com/Tencent/MimicMotion">MimicMotion</a>, <a href="https://github.com/MooreThreads/Moore-AnimateAnyone">Moore-AnimateAnyone</a>, <a href="https://github.com/XiaohangZhan/conditional-motion-propagation">CMP</a>.</span>
+    </div>
+  </section>
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This website is licensed under a <a rel="license"
+                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Image Slider Javascripts -->
+  <!--=================Functions==========================-->
+  <script src="static/js/juxtapose.js"></script>
+
+  <script>
+    var slider;
+    let origImages = [
+      { "src": "BrushNet/teaser/edit_1.jpg", "label": "Masked Image", },
+      { "src": "BrushNet/teaser/gt_1.jpg", "label": "Generated Image", }
+    ];
+    let origOptions = {
+      "makeResponsive": true,
+      "showLabels": true,
+      "mode": "horizontal",
+      "showCredits": true,
+      "animate": true,
+      "startingPosition": "50"
+    };
+
+    const juxtaposeSelector = "#juxtapose-embed";
+    const transientSelector = "#juxtapose-hidden";
+
+
+    function tab_gallery_click(name) {
+      // Get the expanded image
+      let inputImage = {
+        label: "Masked Image",
+      };
+      let outputImage = {
+        label: "Generated Image",
+      };
+
+      inputImage.src = "BrushNet/teaser/".concat("edit_", name, ".jpg")
+      outputImage.src = "BrushNet/teaser/".concat("gt_", name, ".jpg")
+
+
+      if (name == "1") {
+        document.getElementById("juxtapose-embed-text").innerHTML = "A young man with <strong style='color:#00aaff';>blue eyes</strong> and brown hair"
+      }
+      if (name == "2") {
+        document.getElementById("juxtapose-embed-text").innerHTML = "A beautiful woman with <strong style='color:#00aaff';>long blonde hair</strong> and <strong style='color:#00aaff';>stars</strong> in her hair"
+      }
+      if (name == "3") {
+        document.getElementById("juxtapose-embed-text").innerHTML = "The cover of a <strong style='color:#00aaff';>book</strong>, the <strong style='color:#00aaff';>girl</strong> and the dog"
+      }
+      if (name == "4") {
+        document.getElementById("juxtapose-embed-text").innerHTML = "A <strong style='color:#00aaff';>woman</strong> holding a rainbow flag in the air"
+      }
+      if (name == "5") {
+        document.getElementById("juxtapose-embed-text").innerHTML = "A <strong style='color:#00aaff';>woman in futuristic armor</strong> and glasses standing in front of a <strong style='color:#00aaff';>city</strong>"
+      }
+      if (name == "6") {
+        document.getElementById("juxtapose-embed-text").innerHTML = "A <strong style='color:#00aaff';>woman</strong> with her hands on her face"
+      }
+      if (name == "7") {
+        document.getElementById("juxtapose-embed-text").innerHTML = "A <strong style='color:#00aaff';>woman</strong> in a witch hat and <strong style='color:#00aaff';>black dress</strong>"
+      }
+      if (name == "8") {
+        document.getElementById("juxtapose-embed-text").innerHTML = "A blue <strong style='color:#00aaff';>butterfly</strong> with <strong style='color:#00aaff';>stars</strong> on it"
+      }
+      if (name == "9") {
+        document.getElementById("juxtapose-embed-text").innerHTML = "A lipstick with <strong style='color:#00aaff';>red powder</strong> around it"
+      }
+      if (name == "10") {
+        document.getElementById("juxtapose-embed-text").innerHTML = "Cartoon girl sitting at a table with <strong style='color:#00aaff';>pizza and drink</strong>"
+      }
+      if (name == "11") {
+        document.getElementById("juxtapose-embed-text").innerHTML = "A <strong style='color:#00aaff';>woman</strong> in traditional chinese dress holding a <strong style='color:#00aaff';>flower</strong>"
+      }
+      if (name == "12") {
+        document.getElementById("juxtapose-embed-text").innerHTML = "A <strong style='color:#00aaff';>painting</strong> of a <strong style='color:#00aaff';>house</strong> on a hill with a path leading to it"
+      }
+      if (name == "13") {
+        document.getElementById("juxtapose-embed-text").innerHTML = "A <strong style='color:#00aaff';>woman</strong> in a gold dress holding an <strong style='color:#00aaff';>apple</strong>"
+      }
+
+      let images = [inputImage, outputImage];
+      let options = slider.options;
+      options.callback = function (obj) {
+        var newNode = document.getElementById(obj.selector.substring(1));
+        var oldNode = document.getElementById(juxtaposeSelector.substring(1));
+
+        console.log(obj.selector.substring(1));
+        console.log(newNode.children[0]);
+        oldNode.replaceChild(newNode.children[0], oldNode.children[0]);
+        //newNode.removeChild(newNode.children[0]);
+
+      };
+
+      slider = new juxtapose.JXSlider(transientSelector, images, options);
+    };
+
+    (function () {
+      slider = new juxtapose.JXSlider(
+        juxtaposeSelector, origImages, origOptions);
+      //document.getElementById("left-button").onclick = replaceLeft;
+      //document.getElementById("right-button").onclick = replaceRight;
+    })();
+    // Get the image text
+    var imgText = document.getElementById("imgtext");
+    // Use the same src in the expanded image as the image being clicked on from the grid
+    // expandImg.src = imgs.src;
+    // Use the value of the alt attribute of the clickable image as text inside the expanded image
+    imgText.innerHTML = name;
+    // Show the container element (hidden with CSS)
+    // expandImg.parentElement.style.display = "block";
+
+    $(".flip-card").click(function () {
+      console.log("fading in")
+      div_back = $(this).children().children()[1]
+      div_front = $(this).children().children()[0]
+      // console.log($(this).children("div.flip-card-back"))
+      console.log(div_back)
+      $(div_front).addClass("out");
+      $(div_front).removeClass("in");
+
+      $(div_back).addClass("in");
+      $(div_back).removeClass("out");
+
+    });
+
+    $(".flip-card").mouseleave(function () {
+      console.log("fading in")
+      div_back = $(this).children().children()[1]
+      div_front = $(this).children().children()[0]
+      // console.log($(this).children("div.flip-card-back"))
+      console.log(div_back)
+      $(div_front).addClass("in");
+      $(div_front).removeClass("out");
+
+      $(div_back).addClass("out");
+      $(div_back).removeClass("in");
+
+    });
+  </script>
+
+
+</body>
+
+</html>
