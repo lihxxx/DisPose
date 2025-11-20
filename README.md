@@ -1,4 +1,4 @@
-# ICLR2025 DisPose: Disentangling Pose Guidance for Controllable Human Image Animation
+# [ICLR2025] DisPose: Disentangling Pose Guidance for Controllable Human Image Animation
 This repository is the official implementation of [DisPose](https://arxiv.org/abs/2412.09349).
 
 [![arXiv](https://img.shields.io/badge/arXiv-2412.09349-b31b1b.svg)](https://arxiv.org/abs/2412.09349)
@@ -95,10 +95,12 @@ We sincerely appreciate the code release of the following projects: [MimicMotion
 ## 🔍 Citation
 
 ```
-@article{li2024dispose,
-  title={DisPose: Disentangling Pose Guidance for Controllable Human Image Animation},
-  author={Li, Hongxiang and Li, Yaowei and Yang, Yuhang and Cao, Junjie and Zhu, Zhihong and Cheng, Xuxin and Chen Long},
-  journal={arXiv preprint arXiv:2412.09349},
-  year={2024}
+@inproceedings{
+li2025dispose,
+title={DisPose: Disentangling Pose Guidance for Controllable Human Image Animation},
+author={Hongxiang Li and Yaowei Li and Yuhang Yang and Junjie Cao and Zhihong Zhu and Xuxin Cheng and Long Chen},
+booktitle={The Thirteenth International Conference on Learning Representations},
+year={2025},
+url={https://openreview.net/forum?id=AumOa10MKG}
 }
 ```
